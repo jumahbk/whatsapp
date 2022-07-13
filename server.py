@@ -16,6 +16,7 @@ VERIFY_TOKEN = "test"
 
 @app.route("/", methods=["GET", "POST"])
 def hook():
+    request.args.get("hub.challenge")
     print("got it")
     if request.method == "GET":
         if request.args.get("hub.verify_token") == VERIFY_TOKEN:
