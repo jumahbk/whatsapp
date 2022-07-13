@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Load .env file
 
-messenger = WhatsApp('EAAHlPsvlZAjABADWp7TdceFTZCMX3Fmr1OiYXnBgAcJoZATHccZBAbkVmuZB5bi24X5EOcHM5lN4uSLKtuokbi1fZCZCRkdR9juwA2ZCqFn22JkkYhgMbaBEvuWZBajuze2yrLAJ5XDoxFL9sXLHPqwxeiT70vhp6eAuIfEZC9W81IPHkWXhZCINsOWhDiJAWE5EJ6nIC1Xy4QsjLyxHRZCTFzBjPAsHJhTJGIYZD',
+messenger = WhatsApp('EAAHlPsvlZAjABAIILsQGlqnAX4jdZAHYhSIuQTFJEagNyUsRfMiYhM9QqA9Fry1v2KSlQAEY9XZCctSZCIAdzdEwJaGcZB8u3NegHv6OIW1zOJdwpvL9uoPIFVKJGl4J75CjWRiyUtsnXmlwYCX2ZAC8sgqtkoxszh7UMpnSxG8hlUe1jmGPev0S22xKVQjbZBNemSr0xoDvUboYOVnD5F0',
 
 phone_number_id='103290435735343')
 VERIFY_TOKEN = "test"
@@ -53,4 +53,4 @@ def hook():
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True,host="0.0.0.0", ssl_context=('cert.pem', 'key.pem'))
+    app.run(port=1010, debug=True,host="0.0.0.0", ssl_context=('cert.pem', 'key.pem'))
