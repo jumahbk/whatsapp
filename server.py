@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Load .env file
 
-messenger = WhatsApp('EAAHlPsvlZAjABAFga1efGt53S7LJzQu9AfsIvBs8fpXvyz9RIZAkA4ORvJ5OmZBCv1gSBoeKwOAbMCm5z3CunhBcZBG4soByv7q3ae0sBJXrn1hJbUcWLVcEXEZAMCzaokmkMgYy5Ibc5s6qOad2U1lT7mq5SagOwHmJqwwJZA2g4q0dIbgO60wpNVVHeTYCSmGTGD6tKoImaVW8ClQq02',
+messenger = WhatsApp('EAAHlPsvlZAjABAH9tpUMbtX0xZA6gnCVaGzrS26HrAdBR46WChbZBWWsA7gRfj3qG7dWiufgZCrCPdvZAxcUJkpZBYBZAJGsWi3lS7Jsbwnkqc0drHWhrLCZAKFYinVVIR27Vg8brRK1HwCDXzJ5ywNDIlpp0DBxA8IOp1fDE4CCkkaYnqNFIJvtQxzn4jTCSCZAyYw5lxsyK4ZB8phx2lMhjZC',
 
 phone_number_id='103290435735343')
 VERIFY_TOKEN = "Test"
