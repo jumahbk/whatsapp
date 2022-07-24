@@ -8,7 +8,12 @@ app = Flask(__name__)
 
 # Load .env file
 
-messenger = WhatsApp('EAAHlPsvlZAjABAHIlcbZBmztdo4IeaIqIW97Ug2ZALUnnlWBqbDMvzkxQiOrdcWFNZAcDGZCuUVGvo3zXH8sphJOWn1aZA3nDxhRrq6k10fOMkvnSQeOkwNrsrUdZA11zduKZCZCUN0t5udkTv4LZBysAT17zSgZBcKOeglQTt1rtxSKrsrNjWUpxD0',
+response = requests.get('https://www.medartclinics.com/tttt.bin')
+
+keytoken = unquote(requests.get('https://www.medartclinics.com/tttt.bin').text)
+
+
+messenger = WhatsApp(keytoken,
 
 phone_number_id='103290435735343')
 VERIFY_TOKEN = "test"
