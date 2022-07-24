@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Load .env file
 
-messenger = WhatsApp('EAAHlPsvlZAjABAIILsQGlqnAX4jdZAHYhSIuQTFJEagNyUsRfMiYhM9QqA9Fry1v2KSlQAEY9XZCctSZCIAdzdEwJaGcZB8u3NegHv6OIW1zOJdwpvL9uoPIFVKJGl4J75CjWRiyUtsnXmlwYCX2ZAC8sgqtkoxszh7UMpnSxG8hlUe1jmGPev0S22xKVQjbZBNemSr0xoDvUboYOVnD5F0',
+messenger = WhatsApp('EAAHlPsvlZAjABAHIlcbZBmztdo4IeaIqIW97Ug2ZALUnnlWBqbDMvzkxQiOrdcWFNZAcDGZCuUVGvo3zXH8sphJOWn1aZA3nDxhRrq6k10fOMkvnSQeOkwNrsrUdZA11zduKZCZCUN0t5udkTv4LZBysAT17zSgZBcKOeglQTt1rtxSKrsrNjWUpxD0',
 
 phone_number_id='103290435735343')
 VERIFY_TOKEN = "test"
@@ -16,7 +16,6 @@ VERIFY_TOKEN = "test"
 
 @app.route("/", methods=["GET", "POST"])
 def hook():
-    return request.args.get("hub.challenge")
     print("got it")
     if request.method == "GET":
         if request.args.get("hub.verify_token") == VERIFY_TOKEN:
@@ -53,4 +52,4 @@ def hook():
 
 
 if __name__ == "__main__":
-    app.run(port=1010, debug=True,host="0.0.0.0", ssl_context=('cert.pem', 'key.pem'))
+    app.run(port=5000)
