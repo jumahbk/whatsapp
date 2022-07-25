@@ -23,7 +23,7 @@ def send_message(message, keytoken, dayname, time, date, morning):
     fullTime = str(time) + ' ' + morning
     response = requests.get('https://www.medartclinics.com/tttt.bin')
     messenger = WhatsApp(keytoken,  phone_number_id='103290435735343')
-    r = messenger.send_templatev2("appointment_remainder", "966555862924", '[{"type": "body","parameters": [{ "type": "text","'+fullTime+'": "your-text-string"},{"type": "'+str(date)+'","text": "' +dayname+ '"},  { "type": "text","text": "your-text-string"}]}]', "ar")
+    r = messenger.send_templatev2("appointment_remainder", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+fullTime+'"}, { "type": "text","text": "'+dayname+'"},{ "type": "text","text": "'+str(date)+'"}]}]', "ar")
     print(r)
     
 
