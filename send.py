@@ -3,13 +3,14 @@ from flask import Flask,request,json
 from heyoo import WhatsApp
 from urllib.parse import unquote
 from datetime import datetime
+import urllib.request, json 
 
 response = requests.get('https://www.medartclinics.com/tttt.bin')
 
 days = [
 'الأثنين',
 'الثلاثاء',
-'الاربعاء',
+'الاربعاء', 
 'الخميس',
 'الجمعة',
 'السبت'
@@ -21,9 +22,13 @@ keytoken = unquote(requests.get('https://www.medartclinics.com/tttt.bin').text)
 def send_message(message, keytoken, dayname, time, date, morning):
     fullTime = str(time) + ' ' + morning
     response = requests.get('https://www.medartclinics.com/tttt.bin')
-    messenger = WhatsApp(keytoken,  phone_number_id='103290435735343')
-    r = messenger.send_templatev2("appointment_remainder", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+fullTime+'"}, { "type": "text","text": "'+dayname+'"},{ "type": "text","text": "'+str(date)+'"}]}]', "ar")
-    print(r)
+    messenger = WhatsApp(keytoken,  phone_number_id='106910008780900')
+    r = messenger.send_templatev2("appointment_remainder", "966542020099", '[{"type": "body","parameters": [{ "type": "text","text": "'+fullTime+'"}, { "type": "text","text": "'+dayname+'"},{ "type": "text","text": "'+str(date)+'"}]}]', "ar")
+    if "error" in r:
+        print("Error")
+        return 'Failed'
+    else :
+        return r['contacts'][0]['id']
     
 
 
@@ -44,6 +49,7 @@ def hello():
        r = requests.get('http://192.168.2.102/appointments')
        data = r.json()
        print(data[0]['id'])
+       index = 1
        for c in data:
            id = c['id']
            dayDate = c['appDate']
@@ -60,6 +66,8 @@ def hello():
            if(isPm):
             morning = 'مساءً'
            send_message('test2',keytoken, days[0], time_object.strftime("%H:%M"), date_object.date(),morning )
+           if index == 1:
+               return 'OK'
        return str(r.json())
        # date = request.args.get('$aptDate')
        # print('Hello=')
