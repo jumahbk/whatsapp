@@ -32,6 +32,7 @@ def hook():
     changed_field = messenger.changed_field(data)
     if changed_field == "messages":
         new_message = messenger.get_mobile(data)
+        print(str(data))
         if new_message:
             mobile = messenger.get_mobile(data)
             message_type = messenger.get_message_type(data)
