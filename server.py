@@ -1,14 +1,15 @@
-import os
-import json
+import requests
+from flask import Flask,request,json
 from heyoo import WhatsApp
-from flask import Flask, request
-
+from urllib.parse import unquote
+from datetime import datetime
+import urllib.request, json 
 
 app = Flask(__name__)
 
 # Load .env file
 
-response = requests.get('https://www.medartclinics.com/tttt.bin')
+# response = request.get('https://www.medartclinics.com/tttt.bin')
 
 keytoken = unquote(requests.get('https://www.medartclinics.com/tttt.bin').text)
 
