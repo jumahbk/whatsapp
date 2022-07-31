@@ -28,7 +28,10 @@ def send_message(message, keytoken, dayname, time, date, morning):
         print("Error")
         return 'Failed'
     else :
-        return r['contacts'][0]['id']
+        print(r)
+        d = r['messages'][0]['id']
+        print(d)
+        return 0
     
 
 
