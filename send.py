@@ -83,7 +83,7 @@ def hello():
       #  morning = 'صباحاً'
       #  if(isPm):
       #      morning = 'مساءً'
-       # print(isPm)
+       # print(isPm) 
        # send_message('test2',keytoken, days[datetime_object.weekday()], datetime_object.strftime("%H:%M"), datetime_object.date(),morning )
         # 'ok'
  

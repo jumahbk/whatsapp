@@ -1,15 +1,14 @@
-import requests
-from flask import Flask,request,json
+import os
+import json
 from heyoo import WhatsApp
-from urllib.parse import unquote
-from datetime import datetime
-import urllib.request, json 
+from flask import Flask, request
+
 
 app = Flask(__name__)
 
 # Load .env file
 
-# response = request.get('https://www.medartclinics.com/tttt.bin')
+response = requests.get('https://www.medartclinics.com/tttt.bin')
 
 keytoken = unquote(requests.get('https://www.medartclinics.com/tttt.bin').text)
 
@@ -32,7 +31,6 @@ def hook():
     changed_field = messenger.changed_field(data)
     if changed_field == "messages":
         new_message = messenger.get_mobile(data)
-        print(str(data))
         if new_message:
             mobile = messenger.get_mobile(data)
             message_type = messenger.get_message_type(data)
