@@ -68,9 +68,23 @@ def hello():
            morning = 'صباحاً'
            if(isPm):
             morning = 'مساءً'
-           send_message('test2',keytoken, days[0], time_object.strftime("%H:%M"), date_object.date(),morning )
+
+           payload = {
+                'aptId': '1',
+                'patId': '1',
+                'dateSent': '1-1-2001',
+                'wadid': '1',
+                'mobile': '555862924',
+                'aptId': '3',
+                'respond':'0',
+                'accept':'0'
+            }
+          # send_message('test2',keytoken, days[0], time_object.strftime("%H:%M"), date_object.date(),morning )
+
+           res = requests.post('http://192.168.2.102/whatsappreminders/create', data=payload)
+           print(res)
            if index == 1:
-               return 'OK'
+               return res.text
        return str(r.json())
        # date = request.args.get('$aptDate')
        # print('Hello=')
