@@ -31,7 +31,7 @@ def send_message(message, keytoken, dayname, time, date, morning):
         print(r)
         d = r['messages'][0]['id']
         print(d)
-        return 0
+        return d
     
 
 
@@ -73,20 +73,23 @@ def hello():
                 'aptId': '' +str(id),
                 'patId': '' + str(patId),
                 'dateSent': datetime.now().strftime("%Y-%m-%d %I:%M %p"),
-                'wadid': '1',
+                'waid': '1',
                 'mobile': '' + mobile,
                 
                 'respond':'0',
                 'accept':'0'
             }
-
-          # send_message('test2',keytoken, days[0], time_object.strftime("%H:%M"), date_object.date(),morning )
-
-           res = requests.post('http://192.168.2.102/whatsappreminders/create', data=payload)
-           print(res)
-           if index == 11111:
-               return res.text
-       return str(r.json())
+           res = requests.post('http://192.168.2.102/whatsappreminders/isDuplicate', data=payload)
+           if index == 2:
+            return 'done'
+           index = index + 1
+           if res.text.find("Dup") > -1:
+                print("Continue")
+           else:
+                d = send_message('test2',keytoken, days[0], time_object.strftime("%H:%M"), date_object.date(),morning )
+                payload['waid']= d
+                res = requests.post('http://192.168.2.102/whatsappreminders/create', data=payload)
+       return "Done"
        # date = request.args.get('$aptDate')
        # print('Hello=')
        # print(date)
