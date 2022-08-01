@@ -70,20 +70,21 @@ def hello():
             morning = 'مساءً'
 
            payload = {
-                'aptId': '1',
-                'patId': '1',
-                'dateSent': '1-1-2001',
+                'aptId': '' +str(id),
+                'patId': '' + str(patId),
+                'dateSent': datetime.now().strftime("%Y-%m-%d %I:%M %p"),
                 'wadid': '1',
-                'mobile': '555862924',
-                'aptId': '3',
+                'mobile': '' + mobile,
+                
                 'respond':'0',
                 'accept':'0'
             }
+
           # send_message('test2',keytoken, days[0], time_object.strftime("%H:%M"), date_object.date(),morning )
 
            res = requests.post('http://192.168.2.102/whatsappreminders/create', data=payload)
            print(res)
-           if index == 1:
+           if index == 11111:
                return res.text
        return str(r.json())
        # date = request.args.get('$aptDate')
