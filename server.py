@@ -23,13 +23,16 @@ VERIFY_TOKEN = "test"
 
 @app.route("/", methods=["GET", "POST"])
 def hook():
-    print("got it")
+   # print("got it")
     if request.method == "GET":
         if request.args.get("hub.verify_token") == VERIFY_TOKEN:
             return request.args.get("hub.challenge")
         return "Invalid verification token"
 
     data = request.get_json()
+    
+    #print(                message = data['messages'][0]['context']['id'])
+ #   print(data)
     changed_field = messenger.changed_field(data)
     if changed_field == "messages":
         new_message = messenger.get_mobile(data)
@@ -41,13 +44,36 @@ def hook():
             if message_type == "text":
                 message = messenger.get_message(data)
                 name = messenger.get_name(data)
-                print(f"{name} with this {mobile} number sent  {message}")
+            #    print(f"{name} with this {mobile} number sent  {message}")
                 messenger.send_message(f"Hi {name}, nice to connect with you", mobile)
 
             elif message_type == "interactive":
                 message_response = messenger.get_interactive_response(data)
-                print(message_response)
+            #    print(message_response)
 
+            elif message_type == "button":
+                message_response = messenger.preprocess(data)
+
+          #      message_response = messenger.get_message(data)
+                originalId = message_response['messages'][0]['context']['id']
+                userAnswer = message_response['messages'][0]['button']['payload']
+                accept = 'True'
+                print(originalId)
+               # print(message_response['messages'][0]['button']['payload'])
+                if userAnswer == 'الغاء الموعد':
+                    accept = 'False'
+                payload = {
+                #'aptId': '' +str(id),
+               # 'patId': '' + str(patId),
+             #   'dateSent': datetime.now().strftime("%Y-%m-%d %I:%M %p"),
+                'waid': originalId,
+                #'mobile': '' + mobile,
+                
+                'responded':'True',
+                'accept': accept
+                }
+                res = requests.post('http://192.168.2.102/whatsappreminders/updateResponse', data=payload)
+                print(res.text)
             else:
                 pass
         else:
@@ -55,7 +81,7 @@ def hook():
             if delivery:
                 print(f"Message : {delivery}")
             else:
-                print("No new message")
+               print("No new message")
     return "ok" 
 
 

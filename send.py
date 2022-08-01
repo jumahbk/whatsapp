@@ -23,7 +23,7 @@ def send_message(message, keytoken, dayname, time, date, morning):
     fullTime = str(time) + ' ' + morning
     response = requests.get('https://www.medartclinics.com/tttt.bin')
     messenger = WhatsApp(keytoken,  phone_number_id='106910008780900')
-    r = messenger.send_templatev2("appointment_remainder", "966542020099", '[{"type": "body","parameters": [{ "type": "text","text": "'+fullTime+'"}, { "type": "text","text": "'+dayname+'"},{ "type": "text","text": "'+str(date)+'"}]}]', "ar")
+    r = messenger.send_templatev2("appointment_remainder", "966505817800", '[{"type": "body","parameters": [{ "type": "text","text": "'+fullTime+'"}, { "type": "text","text": "'+dayname+'"},{ "type": "text","text": "'+str(date)+'"}]}]', "ar")
     if "error" in r:
         print("Error")
         return 'Failed'
@@ -44,7 +44,7 @@ app = Flask(__name__)
 def hello():
     if request.method == 'POST':
        date = request.args.get('aptDate')
-       print(date)
+      # print(date)
        
        send_message('test1',keytoken)
        return 'ok'
@@ -56,14 +56,16 @@ def hello():
        for c in data:
            id = c['id']
            dayDate = c['appDate']
+
            dayDate = dayDate.replace("T", " ")
            time = c['fromTime']
            time = time.replace("T", " ")
            mobile = c['mobile']
            patId = c['patientId']
-           print(str(c['id']))
+       #    print(str(c['id']))
            date_object = datetime.strptime(dayDate, '%Y-%m-%d %H:%M:%S')
            time_object = datetime.strptime(time, '%Y-%m-%d %H:%M:%S')
+           dayIndex = date_object.weekday()
            isPm = time_object.strftime("%I:%M %p").endswith('PM')
            morning = 'صباحاً'
            if(isPm):
@@ -80,15 +82,16 @@ def hello():
                 'accept':'0'
             }
            res = requests.post('http://192.168.2.102/whatsappreminders/isDuplicate', data=payload)
-           if index == 2:
+           if index == 500:
             return 'done'
            index = index + 1
            if res.text.find("Dup") > -1:
                 print("Continue")
            else:
-                d = send_message('test2',keytoken, days[0], time_object.strftime("%H:%M"), date_object.date(),morning )
+                d = send_message('test2',keytoken, days[dayIndex], time_object.strftime("%H:%M"), date_object.date(),morning )
                 payload['waid']= d
                 res = requests.post('http://192.168.2.102/whatsappreminders/create', data=payload)
+                print(payload)
        return "Done"
        # date = request.args.get('$aptDate')
        # print('Hello=')
