@@ -1,7 +1,9 @@
+import requests
 import os
 import json
 from heyoo import WhatsApp
 from flask import Flask, request
+from urllib.parse import unquote
 
 
 app = Flask(__name__)
@@ -33,6 +35,7 @@ def hook():
         new_message = messenger.get_mobile(data)
         if new_message:
             mobile = messenger.get_mobile(data)
+            
             message_type = messenger.get_message_type(data)
 
             if message_type == "text":
