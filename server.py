@@ -66,7 +66,15 @@ def hook():
                     accept = 'False'
                     messenger.send_message(f"تم استلام طلبكم بالغاء الموعود  و سيتم التواصل معكم لتاكيد الالغاء", mobile)
                 elif  userAnswer == "طلب او تعديل موعد":
-                      messenger.send_message(f"شكراً لتأكيدكم الموعد، نتطلع لخدمتكم", mobile)
+                      messenger.send_message(f"شكراً لتواصلكم، تم اخطار مركز الاتصال و سيتم التواصل معكم في اقرب فرصة ", mobile)
+                      text = "Appointment Request : " + mobile
+                      messenger.send_message(f"", "966557779388")
+                elif  userAnswer == "للحصول على موقع العيادة":
+                      messenger.send_location("26.2840119","50.1994742","Medart Clinics","Dhahran Street", mobile )
+                elif  userAnswer == "اخر العروض":
+                      messenger.send_message(f"يمكنك الحصول على العروض الحاليه من خلال الرابط:", mobile)
+
+                      messenger.send_message(f"https://www.medartclinics.com/ar/khobar-offers-instagram/", mobile)
 
                 else:
                     messenger.send_message(f"شكراً لتأكيدكم الموعد، نتطلع لخدمتكم", mobile)
