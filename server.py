@@ -17,7 +17,7 @@ keytoken = unquote(requests.get('https://www.medartclinics.com/tttt.bin').text)
 
 messenger = WhatsApp(keytoken,
 
-phone_number_id='103290435735343')
+phone_number_id='105367738941421')
 VERIFY_TOKEN = "test"
 
 
@@ -45,7 +45,8 @@ def hook():
                 message = messenger.get_message(data)
                 name = messenger.get_name(data)
             #    print(f"{name} with this {mobile} number sent  {message}")
-                messenger.send_message(f"Hi {name}, nice to connect with you", mobile)
+                #messenger.send_message(f"شكراً لتواصلك مع خدمة الرد الالي بعيادات ميد آرت فرع الخبر", mobile)
+                print(messenger.send_template("welcome", "966555862924","ar"))
 
             elif message_type == "interactive":
                 message_response = messenger.get_interactive_response(data)
@@ -60,8 +61,16 @@ def hook():
                 accept = 'True'
                 print(originalId)
                # print(message_response['messages'][0]['button']['payload'])
+                print(userAnswer)
                 if userAnswer == 'الغاء الموعد':
                     accept = 'False'
+                    messenger.send_message(f"تم استلام طلبكم بالغاء الموعود  و سيتم التواصل معكم لتاكيد الالغاء", mobile)
+                elif  userAnswer == "طلب او تعديل موعد":
+                      messenger.send_message(f"شكراً لتأكيدكم الموعد، نتطلع لخدمتكم", mobile)
+
+                else:
+                    messenger.send_message(f"شكراً لتأكيدكم الموعد، نتطلع لخدمتكم", mobile)
+
                 payload = {
                 #'aptId': '' +str(id),
                # 'patId': '' + str(patId),

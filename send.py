@@ -13,7 +13,7 @@ days = [
 'الاربعاء', 
 'الخميس',
 'الجمعة',
-'السبت'
+'السبت',
 'الأحد'
 ]
 
@@ -23,7 +23,7 @@ def send_message(message, keytoken, dayname, time, date, morning):
     fullTime = str(time) + ' ' + morning
     response = requests.get('https://www.medartclinics.com/tttt.bin')
     messenger = WhatsApp(keytoken,  phone_number_id='106910008780900')
-    r = messenger.send_templatev2("appointment_remainder", "966505817800", '[{"type": "body","parameters": [{ "type": "text","text": "'+fullTime+'"}, { "type": "text","text": "'+dayname+'"},{ "type": "text","text": "'+str(date)+'"}]}]', "ar")
+    r = messenger.send_templatev2("appointment_remainder", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+fullTime+'"}, { "type": "text","text": "'+dayname+'"},{ "type": "text","text": "'+str(date)+'"}]}]', "ar")
     if "error" in r:
         print("Error")
         return 'Failed'
