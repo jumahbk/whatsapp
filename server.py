@@ -46,7 +46,7 @@ def hook():
                 name = messenger.get_name(data)
             #    print(f"{name} with this {mobile} number sent  {message}")
                 #messenger.send_message(f"شكراً لتواصلك مع خدمة الرد الالي بعيادات ميد آرت فرع الخبر", mobile)
-                print(messenger.send_template("welcome", "966555862924","ar"))
+                print(messenger.send_template("welcome", mobile,"ar"))
 
             elif message_type == "interactive":
                 message_response = messenger.get_interactive_response(data)
@@ -68,7 +68,7 @@ def hook():
                 elif  userAnswer == "طلب او تعديل موعد":
                       messenger.send_message(f"شكراً لتواصلكم، تم اخطار مركز الاتصال و سيتم التواصل معكم في اقرب فرصة ", mobile)
                       text = "Appointment Request : " + mobile
-                      messenger.send_message(f"", "966557779388")
+                      messenger.send_message(text, "966557779388")
                 elif  userAnswer == "للحصول على موقع العيادة":
                       messenger.send_location("26.2840119","50.1994742","Medart Clinics","Dhahran Street", mobile )
                 elif  userAnswer == "اخر العروض":
