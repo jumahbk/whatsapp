@@ -59,13 +59,16 @@ def hook():
                 originalId = message_response['messages'][0]['context']['id']
                 userAnswer = message_response['messages'][0]['button']['payload']
                 accept = 'True'
+                respond = 0
                 print(originalId)
                # print(message_response['messages'][0]['button']['payload'])
                 print(userAnswer)
                 if userAnswer == 'الغاء الموعد':
                     accept = 'False'
+                    respond = 1
                     messenger.send_message(f"تم استلام طلبكم بالغاء الموعود  و سيتم التواصل معكم لتاكيد الالغاء", mobile)
                 elif  userAnswer == "طلب او تعديل موعد":
+                      r = messenger.send_templatev2("appointment_request", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
                       messenger.send_message(f"شكراً لتواصلكم، تم اخطار مركز الاتصال و سيتم التواصل معكم في اقرب فرصة ", mobile)
                 elif  userAnswer == "للحصول على موقع العيادة":
                       messenger.send_location("26.2840119","50.1994742","Medart Clinics","Dhahran Street", mobile )
@@ -76,19 +79,20 @@ def hook():
 
                 else:
                     messenger.send_message(f"شكراً لتأكيدكم الموعد، نتطلع لخدمتكم", mobile)
-
-                payload = {
-                #'aptId': '' +str(id),
-               # 'patId': '' + str(patId),
-             #   'dateSent': datetime.now().strftime("%Y-%m-%d %I:%M %p"),
-                'waid': originalId,
-                #'mobile': '' + mobile,
-                
-                'responded':'True',
-                'accept': accept
-                }
-                res = requests.post('http://192.168.2.102/whatsappreminders/updateResponse', data=payload)
-                print(res.text)
+                    respond = 1
+                if(respond > 0):
+                    payload = {
+                    #'aptId': '' +str(id),
+                # 'patId': '' + str(patId),
+                #   'dateSent': datetime.now().strftime("%Y-%m-%d %I:%M %p"),
+                    'waid': originalId,
+                    #'mobile': '' + mobile,
+                    
+                    'responded':'True',
+                    'accept': accept
+                    }
+                    res = requests.post('http://192.168.2.102/whatsappreminders/updateResponse', data=payload)
+                    print(res.text)
             else:
                 pass
         else:
