@@ -4,7 +4,7 @@ import json
 from heyoo import WhatsApp
 from flask import Flask, request
 from urllib.parse import unquote
-
+import smtplib, ssl
 
 app = Flask(__name__)
 
@@ -68,7 +68,13 @@ def hook():
                 elif  userAnswer == "طلب او تعديل موعد":
                       messenger.send_message(f"شكراً لتواصلكم، تم اخطار مركز الاتصال و سيتم التواصل معكم في اقرب فرصة ", mobile)
                       text = "Appointment Request : " + mobile
-                      messenger.send_message(text, "966557779388")
+                      whom = 'Sara2006!'
+                      port = 465  
+                      context = ssl.create_default_context()
+                      with smtplib.SMTP_SSL("smtp.banderjumah.com", port, context=context) as server:
+                          server.login("bander@medartclinics.com", whom)
+                          server.sendmail('bander@medartclinics.com', 'contact-kh@medartclinics.com', text)
+
                 elif  userAnswer == "للحصول على موقع العيادة":
                       messenger.send_location("26.2840119","50.1994742","Medart Clinics","Dhahran Street", mobile )
                 elif  userAnswer == "اخر العروض":
