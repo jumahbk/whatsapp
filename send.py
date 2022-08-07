@@ -19,11 +19,11 @@ days = [
 
 
 keytoken = unquote(requests.get('https://www.medartclinics.com/tttt.bin').text)
-def send_message(message, keytoken, dayname, time, date, morning):
+def send_message(message, keytoken, dayname, time, date, morning, mobile):
     fullTime = str(time) + ' ' + morning
     response = requests.get('https://www.medartclinics.com/tttt.bin')
-    messenger = WhatsApp(keytoken,  phone_number_id='106910008780900')
-    r = messenger.send_templatev2("appointment_remainder", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+fullTime+'"}, { "type": "text","text": "'+dayname+'"},{ "type": "text","text": "'+str(date)+'"}]}]', "ar")
+    messenger = WhatsApp(keytoken,  phone_number_id='105367738941421')
+    r = messenger.send_templatev2("appointment_remainder", mobile, '[{"type": "body","parameters": [{ "type": "text","text": "'+fullTime+'"}, { "type": "text","text": "'+dayname+'"},{ "type": "text","text": "'+str(date)+'"}]}]', "ar")
     if "error" in r:
         print("Error")
         return 'Failed'
@@ -88,7 +88,7 @@ def hello():
            if res.text.find("Dup") > -1:
                 print("Continue")
            else:
-                d = send_message('test2',keytoken, days[dayIndex], time_object.strftime("%H:%M"), date_object.date(),morning )
+                d = send_message('test2',keytoken, days[dayIndex], time_object.strftime("%H:%M"), date_object.date(),morning, mobile )
                 payload['waid']= d
                 res = requests.post('http://192.168.2.102/whatsappreminders/create', data=payload)
                 print(payload)

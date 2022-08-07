@@ -5,7 +5,7 @@ from heyoo import WhatsApp
 from flask import Flask, request
 from urllib.parse import unquote
 import smtplib, ssl
-
+from datetime import datetime
 app = Flask(__name__)
 
 # Load .env file
@@ -39,6 +39,26 @@ def hook():
         if new_message:
             mobile = messenger.get_mobile(data)
             
+
+#"Id,Date,Mobile,Content,Sent"
+            payload = {
+                    #'aptId': '' +str(id),
+                # 'patId': '' + str(patId),
+                'Date': datetime.now().strftime("%Y-%m-%d %I:%M %p"),
+         
+                'mobile': '' + mobile,
+                    
+                'Content':str(data),
+                'Sent': 'False'
+            }
+            res = requests.post('http://192.168.2.102/whatsapplogs/create', data=payload)
+            print(res.text)
+
+
+
+
+
+
             message_type = messenger.get_message_type(data)
 
             if message_type == "text":
@@ -98,7 +118,7 @@ def hook():
         else:
             delivery = messenger.get_delivery(data)
             if delivery:
-                print(f"Message : {delivery}")
+                print(f"Message : {delivery} data {data}")
             else:
                print("No new message")
     return "ok" 
