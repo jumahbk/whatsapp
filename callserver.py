@@ -26,9 +26,9 @@ def hook():
    # print("got it")
     if request.method == "GET":
         if request.args.get("mobile"):
-            return   messenger.send_templatev2("appointment_request", "555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+request.args.get("mobile")+'"}]}]', "ar")
+            return   messenger.send_template("thankyouforcalling", "555862924", "ar")
 
-        return 'shit'
+        return 'error'
 
    
     return "ok" 
