@@ -26,7 +26,7 @@ def hook():
    # print("got it")
     if request.method == "GET":
         if request.args.get("mobile"):
-            return   messenger.send_template("thankyouforcalling", "555862924", "ar")
+            return   messenger.send_template("thankyouforcalling", request.args.get("mobile"), "ar")
 
         return 'error'
 
