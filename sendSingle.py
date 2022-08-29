@@ -80,7 +80,7 @@ def hello():
                     'accept':'0'
                 }
             res = requests.post('http://192.168.2.102/whatsappreminders/isDuplicate', data=payload)
-            if index == 1:
+            if index == 2:
                 return 'done'
             index = index + 1
             if res.text.find("Dup") > -1:
