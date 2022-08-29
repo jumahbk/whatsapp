@@ -80,15 +80,9 @@ def hello():
                     'accept':'0'
                 }
             res = requests.post('http://192.168.2.102/whatsappreminders/isDuplicate', data=payload)
-            if index == 2:
-                return 'done'
-            index = index + 1
-            if res.text.find("Dup") > -1:
-                    print("Continue")
-            else:
-                d = send_message('test2',keytoken, days[dayIndex], time_object.strftime("%H:%M"), date_object.date(),morning, mobile )
-                payload['waid']= d
-                res = requests.post('http://192.168.2.102/whatsappreminders/create', data=payload)
+            d = send_message('test2',keytoken, days[dayIndex], time_object.strftime("%H:%M"), date_object.date(),morning, mobile )
+            payload['waid']= d
+            res = requests.post('http://192.168.2.102/whatsappreminders/create', data=payload)
 
                
        return "Done"
