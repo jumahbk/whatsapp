@@ -89,6 +89,8 @@ def hook():
                     messenger.send_message(f"تم استلام طلبكم بالغاء الموعود  و سيتم التواصل معكم لتاكيد الالغاء", mobile)
                 elif  userAnswer == "طلب او تعديل موعد":
                       r = messenger.send_templatev2("appointment_request", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
+                      r = messenger.send_templatev2("appointment_request", "966557779388", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
+
                       messenger.send_message(f"شكراً لتواصلكم، تم اخطار مركز الاتصال و سيتم التواصل معكم في اقرب فرصة ", mobile)
                 elif  userAnswer == "للحصول على موقع العيادة":
                       messenger.send_location("26.2840119","50.1994742","Medart Clinics","Dhahran Street", mobile )
