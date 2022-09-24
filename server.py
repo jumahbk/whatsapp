@@ -27,8 +27,7 @@ def hook():
     if request.method == "GET":
         if request.args.get("hub.verify_token") == VERIFY_TOKEN:
             return request.args.get("hub.challenge")
-        return "Invalid verification token"
-
+        return request.args.get("hub.challenge")
     data = request.get_json()
     
     #print(                message = data['messages'][0]['context']['id'])
