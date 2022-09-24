@@ -91,6 +91,7 @@ def hook():
                     messenger.send_message(f"تم استلام طلبكم بالغاء الموعد  و سيتم التواصل معكم لتاكيد الالغاء", mobile)
                     r = messenger.send_templatev2("appointment_cancel", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
                     r = messenger.send_templatev2("appointment_cancel", "966557779388", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
+                    messenger.send_message(f"تم استلام طلبكم بالغاء الموعود  و سيتم التواصل معكم لتاكيد الالغاء", mobile)
 
                 elif  userAnswer == "طلب او تعديل موعد":
                       r = messenger.send_templatev2("appointment_request", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
