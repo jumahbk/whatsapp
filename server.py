@@ -67,6 +67,9 @@ def hook():
             #    print(f"{name} with this {mobile} number sent  {message}")
                 #messenger.send_message(f"شكراً لتواصلك مع خدمة الرد الالي بعيادات ميد آرت فرع الخبر", mobile)
                 print(messenger.send_template("welcome", mobile,"ar"))
+                messenger.send_templatev2("user_text", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"},{ "type": "text","text": "'+message+'"}]}]', "ar")
+                messenger.send_templatev2("user_text", "966557779388", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"},{ "type": "text","text": "'+message+'"}]}]', "ar")
+                messenger.send_templatev2("user_text", "966500768855", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"},{ "type": "text","text": "'+message+'"}]}]', "ar")
 
             elif message_type == "interactive":
                 message_response = messenger.get_interactive_response(data)
@@ -87,8 +90,8 @@ def hook():
                     accept = 'False'
                     respond = 1
                     messenger.send_message(f"تم استلام طلبكم بالغاء الموعد  و سيتم التواصل معكم لتاكيد الالغاء", mobile)
-                    r = messenger.send_templatev2("appointment_request", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
-                    r = messenger.send_templatev2("appointment_request", "966557779388", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
+                    r = messenger.send_templatev2("appointment_cancel", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
+                    r = messenger.send_templatev2("appointment_cancel", "966557779388", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
 
                 elif  userAnswer == "طلب او تعديل موعد":
                       r = messenger.send_templatev2("appointment_request", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
