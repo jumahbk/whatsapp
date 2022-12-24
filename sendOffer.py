@@ -41,10 +41,10 @@ def hello():
 
        return 'ok'
     else:
-       pId = request.args.get('mobile')
+       pId = request.args.get('pId')
        name = request.args.get('name')
 
-       mobile ='0555862924'  #request.args.get('pId')
+       mobile ='0554811828'  #request.args.get('pId')
        if(mobile != None):
 
 
