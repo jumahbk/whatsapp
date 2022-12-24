@@ -44,7 +44,7 @@ def hello():
        pId = request.args.get('pId')
        name = request.args.get('name')
 
-       mobile ='0554811828'  #request.args.get('pId')
+       mobile =request.args.get('mobile')
        if(mobile != None):
 
 
