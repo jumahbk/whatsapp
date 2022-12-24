@@ -97,7 +97,9 @@ def hook():
              
                 if userAnswer == 'لحجز العرض':
 
-                      r = messenger.send_templatev2("appointment_request", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
+                      r = messenger.send_templatev2("offeraccept", "966555862924", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
+                      r = messenger.send_templatev2("offeraccept", "966554811828", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
+
                     #  r = messenger.send_templatev2("appointment_request", "966557779388", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
                     #  r = messenger.send_templatev2("appointment_request", "966500768855", '[{"type": "body","parameters": [{ "type": "text","text": "'+mobile+'"}]}]', "ar")
 
