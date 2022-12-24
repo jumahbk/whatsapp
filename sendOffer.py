@@ -19,7 +19,7 @@ days = [
 
 
 keytoken = unquote(requests.get('https://www.medartclinics.com/tttt.bin').text)
-def send_message(message, name, mobile):
+def send_message(message, keytoken, name, mobile):
   
     response = requests.get('https://www.medartclinics.com/tttt.bin')
     messenger = WhatsApp(keytoken,  phone_number_id='105367738941421')
