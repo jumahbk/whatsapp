@@ -41,7 +41,7 @@ def hello():
 
        return 'ok'
     else:
-       date = request.args.get('mobile')
+       pId = request.args.get('mobile')
        name = request.args.get('name')
 
        mobile ='0555862924'  #request.args.get('pId')
